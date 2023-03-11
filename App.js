@@ -72,7 +72,8 @@ if (isLoading) {
 
 return (
     <NavigationContainer>
-      {user ? <HomeStack /> : <AuthStack />}
+      {/* {user ? <HomeStack /> : <AuthStack />} */}
+      <HomeStack/>
     </NavigationContainer>
     
   );

@@ -17,7 +17,9 @@ const Home = () => {
   const [area, SetArea] = useState([]);
   const [filename,setfilename]=useState("");
 
-
+  const name="Trichy";
+  const time="9.00PM";
+  const price="1200";
   useEffect(() => {
     navigation.setOptions({
       headerLeft: () => (
@@ -82,7 +84,7 @@ const Home = () => {
       </View>
 
       <ScrollView>
-        {filteredData.map((value, key) => (
+       {/* {filteredData.map((value, key) => (
           // onPress={()=>navigation.navigate('BusRoute',{place:value.name,time:value.time,price:value.price})}
           // onPress={() => navigation.navigate("ContactInfo",{price:value.price,place:value.name})}
           <TouchableOpacity
@@ -96,7 +98,17 @@ const Home = () => {
               h={120}
             />
           </TouchableOpacity>
-        ))}
+        ))} */}
+        <TouchableOpacity
+            onPress={()=>navigation.navigate('ContactInfo')}
+          >
+            <DropCard
+              place={name}
+              time={time}
+              price={price}
+              h={120}
+            />
+          </TouchableOpacity>
       </ScrollView>
     </View>
     

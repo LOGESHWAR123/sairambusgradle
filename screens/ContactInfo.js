@@ -7,7 +7,7 @@ import colors from '../colors';
 import { getAuth} from "firebase/auth";
 import {collection,addDoc,orderBy,query,onSnapshot,getDocs,docRef,getDoc,doc,where} from 'firebase/firestore';
 import { auth, database} from '../config/firebase'; 
-
+import RazorpayCheckout from 'react-native-razorpay';
 
 
 const timings = [
@@ -17,16 +17,40 @@ const timings = [
   { time: '04:00', stop: 'Central Bus Stand' },
   { time: '04:00', stop: 'Airport' },
 ];
+const payment = () => {
+  var options = {
+      description: 'BusApp payment',
+      image: 'https://i.imgur.com/3g7nmJC.png',
+      currency: 'INR',
+      key: 'rzp_test_AHMQcxkRqC6Spu',
+      amount: '500000',
+      name: 'foo',
+      prefill: {
+        email: 'void@razorpay.com',
+        contact: '8667075377',
+        name: 'Razorpay Software'
+      },
+      theme: {color: '#0672CF'}
+    }
+    RazorpayCheckout.open(options).then((data) => {
+      // handle success
+      alert(`Success: ${data.razorpay_payment_id}`);
+    }).catch((error) => {
+      // handle failure
+      alert(`Error: ${error.code} | ${error.description}`);
+    });
+}
 
 function ContactInfo({route}) {
     const navigation=useNavigation();
     //const {seatid}=route.params;
-    const {place}=route.params; 
-    const {price}=route.params;
+    //const {place}=route.params; 
+    //const {price}=route.params;
   
   const [details,setdetails]=useState();
   
-  const currentmail=getAuth()?.currentUser.email.split('@')[0];
+ // const currentmail=getAuth()?.currentUser.email.split('@')[0];
+ const currentmail = "sec20it035@sairamtap.edu.in"
   console.log(currentmail);
   useLayoutEffect(() => {
     const collectionRef = collection(database, 'users');
@@ -59,7 +83,8 @@ function ContactInfo({route}) {
     <View>
       
       <View style={styles.bluecontainer}>
-        <Text style={styles.heading}>College  - {place}</Text>
+        {/* <Text style={styles.heading}>College  - {place}</Text> */}
+        <Text style={styles.heading}>College  - Trichy</Text>
         <Text style={styles.subheading}>12 Jan 2023 | Mon</Text>
         
         <View style={styles.whitebox}>
@@ -71,7 +96,8 @@ function ContactInfo({route}) {
             </View>
             <View style={{justifyContent:"space-between"}}>
                 {/* <Text style={styles.subheading}>12 Jan 2023 | Mon</Text> */}
-                <Text style={{fontWeight:"bold",fontSize:20,color:colors.primary}}>{price}</Text>
+                {/* <Text style={{fontWeight:"bold",fontSize:20,color:colors.primary}}>{price}</Text> */}
+                <Text style={{fontWeight:"bold",fontSize:20,color:colors.primary}}>2000</Text>
                 <Text>9h</Text>
             </View>
         </View>
@@ -103,11 +129,14 @@ function ContactInfo({route}) {
 
 
         <View>
-        <Text style={{marginBottom:10,fontSize:17}}>{currentmail}</Text>
+        {/* <Text style={{marginBottom:10,fontSize:17}}>{currentmail}</Text>
         <Text style={{marginBottom:10,fontSize:17}}>{place}</Text>
         <Text style={{marginBottom:10,fontSize:17}}>{price}</Text>
-        <Text style={{marginBottom:10,fontSize:17}}>{currentmail}</Text>
-
+        <Text style={{marginBottom:10,fontSize:17}}>{currentmail}</Text> */}
+        <Text style={{marginBottom:10,fontSize:17}}>sec20i035@sairamtap.edu.in</Text>
+        <Text style={{marginBottom:10,fontSize:17}}>Trichy</Text>
+        <Text style={{marginBottom:10,fontSize:17}}>2000</Text>
+        <Text style={{marginBottom:10,fontSize:17}}>9.00PM</Text>
         </View>
 
         </View>
@@ -154,7 +183,7 @@ function ContactInfo({route}) {
       {/* <View style={{backgroundColor:"white"}}> */}
       <TouchableOpacity style={{alignItems:"center"}}>
         <View style={{height:50,width:170,backgroundColor:colors.primary,borderRadius:6,justifyContent:"center",alignItems:"center",margin:20}}>
-            <Text style={{fontSize:15,color:"white",fontWeight:"bold"}}>Proceed  Payment</Text>
+            <Text style={{fontSize:15,color:"white",fontWeight:"bold"}} onPress={payment}>Proceed  Payment</Text>
         </View>
       </TouchableOpacity>
       {/* </View> */}

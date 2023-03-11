@@ -14,15 +14,16 @@
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/stack": "^6.0.11",
     "dotenv": "^11.0.0",
+    "firebase": "^9.9.3",
     "react": "18.2.0",
+    "react-dom": "18.0.0",
+    "react-native": "0.71.3",
     "react-native-gesture-handler": "~2.5.0",
+    "react-native-razorpay": "^2.3.0",
     "react-native-safe-area-context": "4.3.1",
     "react-native-screens": "~3.15.0",
     "react-native-web": "~0.18.7",
-    "firebase": "^9.9.3",
-    "yarn": "^1.22.19",
-    "react-native": "0.71.3",
-    "react-dom": "18.0.0"
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
