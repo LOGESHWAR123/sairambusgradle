@@ -84,12 +84,12 @@ const Home = () => {
       </View>
 
       <ScrollView>
-       {/* {filteredData.map((value, key) => (
+       {filteredData.map((value, key) => (
           // onPress={()=>navigation.navigate('BusRoute',{place:value.name,time:value.time,price:value.price})}
           // onPress={() => navigation.navigate("ContactInfo",{price:value.price,place:value.name})}
           <TouchableOpacity
             key={key}
-            onPress={()=>navigation.navigate('Ticket')}
+            onPress={() => navigation.navigate("ContactInfo",{price:value.price,place:value.name})}
           >
             <DropCard
               place={value.name}
@@ -98,8 +98,8 @@ const Home = () => {
               h={120}
             />
           </TouchableOpacity>
-        ))} */}
-        <TouchableOpacity
+        ))}
+        {/* <TouchableOpacity
             onPress={()=>navigation.navigate('ContactInfo')}
           >
             <DropCard
@@ -108,7 +108,7 @@ const Home = () => {
               price={price}
               h={120}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
       </ScrollView>
     </View>
     
